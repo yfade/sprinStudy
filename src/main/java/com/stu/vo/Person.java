@@ -1,5 +1,7 @@
 package com.stu.vo;
 
+import java.math.BigDecimal;
+
 /**
  * Created by admin on 2018/10/24.
  */
@@ -8,15 +10,39 @@ public class Person {
     private String name;
     private int age;
     private String sex;
+    private BigDecimal money;
+    private Car car;
+    private String haveCar;
+    private String say;
 
-    public Person() {
+    @Override
+    public String toString() {
+        return "Person{" +
+                "identity='" + identity + '\'' +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                ", sex='" + sex + '\'' +
+                ", money=" + money +
+                ", car=" + car +
+                ", haveCar='" + haveCar + '\'' +
+                ", say='" + say + '\'' +
+                '}';
     }
 
-    public Person(String identity, String name, int age, String sex) {
-        this.identity = identity;
-        this.name = name;
-        this.age = age;
-        this.sex = sex;
+    public String getSay() {
+        return say;
+    }
+
+    public void setSay(String say) {
+        this.say = say;
+    }
+
+    public String getHaveCar() {
+        return haveCar;
+    }
+
+    public void setHaveCar(String haveCar) {
+        this.haveCar = haveCar;
     }
 
     public String getIdentity() {
@@ -51,14 +77,20 @@ public class Person {
         this.sex = sex;
     }
 
-    @Override
-    public String toString() {
-        return "Person{" +
-                "identity='" + identity + '\'' +
-                ", name='" + name + '\'' +
-                ", age=" + age +
-                ", sex='" + sex + '\'' +
-                '}';
+    public Car getCar() {
+        return car;
+    }
+
+    public void setCar(Car car) {
+        this.car = car;
+    }
+
+    public BigDecimal getMoney() {
+        return money;
+    }
+
+    public void setMoney(BigDecimal money) {
+        this.money = money;
     }
 
     public void getPersonInfo(){

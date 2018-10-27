@@ -36,6 +36,11 @@ public class PersonTest {
         System.out.println(person);
     }
 
+
+    /**
+     * 引入外部文件
+     * @throws SQLException
+     */
     @Test
     public void testPeizhiwenjian() throws SQLException {
         DataSource dataSource = (DataSource) act.getBean("dataSource");
@@ -43,5 +48,14 @@ public class PersonTest {
         ComboPooledDataSource source= (ComboPooledDataSource) act.getBean("dataSource");
         System.out.println(source.getPassword());
 
+    }
+    /**
+     * SpEL使用
+     */
+    @Test
+    public void testSpEL(){
+        act = new ClassPathXmlApplicationContext("applicationSpEl.xml");
+        Person person= (Person) act.getBean("person");
+        System.out.println(person);
     }
 }

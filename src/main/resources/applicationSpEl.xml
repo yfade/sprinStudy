@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="person" class="com.stu.vo.Person">
+        <property name="name" value="#{'zhangsan'}"/>
+        <property name="money" value="#{3333333.333+car.price}"/>
+        <property name="age" value="#{23}"/>
+        <property name="car" value="#{car}"/>
+        <property name="haveCar" value="#{car==null?0:1}"/>
+        <property name="say" value="#{car.say()}"/>
+    </bean>
+
+    <bean id="car" class="com.stu.vo.Car">
+        <property name="name" value="mazida"/>
+        <property name="color" value="white"/>
+        <property name="price" value="#{200000.00}"/>
+    </bean>
+</beans>
