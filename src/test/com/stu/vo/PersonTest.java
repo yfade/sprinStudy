@@ -1,7 +1,9 @@
 package com.stu.vo;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
+import com.stu.beanfactory.*;
 import com.stu.livecycle.*;
+import com.stu.livecycle.Car;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -66,5 +68,15 @@ public class PersonTest {
         com.stu.livecycle.Car car= (com.stu.livecycle.Car) act.getBean("car");
         System.out.println(car);
         act.close();
+    }
+
+    @Test
+    public void testFactory(){
+        ApplicationContext act=new ClassPathXmlApplicationContext("applicationFactory.xml");
+        com.stu.beanfactory.Car car= (com.stu.beanfactory.Car) act.getBean("car");
+        System.out.println(car);
+
+        com.stu.beanfactory.Car car1= (com.stu.beanfactory.Car) act.getBean("car1");
+        System.out.println(car1);
     }
 }
