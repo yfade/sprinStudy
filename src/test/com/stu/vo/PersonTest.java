@@ -1,6 +1,7 @@
 package com.stu.vo;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
+import com.stu.livecycle.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -57,5 +58,13 @@ public class PersonTest {
         act = new ClassPathXmlApplicationContext("applicationSpEl.xml");
         Person person= (Person) act.getBean("person");
         System.out.println(person);
+    }
+
+    @Test
+    public void testCycle(){
+        ClassPathXmlApplicationContext act=new ClassPathXmlApplicationContext("applicationCycle.xml");
+        com.stu.livecycle.Car car= (com.stu.livecycle.Car) act.getBean("car");
+        System.out.println(car);
+        act.close();
     }
 }
