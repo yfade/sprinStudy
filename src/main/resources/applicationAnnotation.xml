@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--<context:component-scan base-package="com.stu" resource-pattern="/annotation/vo/People.class"/>-->
+    <!--
+        base-package:需要扫描的基类包及其子包，多个包时可用逗号隔开
+        resource-pattern:如果仅希望扫描包下的特定类，可续用resource-pattern过滤
+        -->
+    <!--可包含多个include或exclude，两者只能用其中一个。使用include时 需要use-default-filters="false"，默认是true-->
+    <context:component-scan base-package="com.stu" resource-pattern="annotation/*/*.class" use-default-filters="false">
+        <!--不包含特定注解(这里指controller)，其他可以-->
+        <!--<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>-->
+        <!--只包含包含特定注解(这里指service)，其他不可以。当过滤为commponent则包含所有-->
+        <!--<context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/>-->
+
+        <!--不包含UserService接口及其实现类，其他可以-->
+        <!--<context:exclude-filter type="assignable" expression="com.stu.annotation.service.UserService"/>-->
+        <!--只包含UserService接口及其实现类，其他不可以-->
+        <!--<context:include-filter type="assignable" expression="com.stu.annotation.service.UserService"/>-->
+    </context:component-scan>
+</beans>

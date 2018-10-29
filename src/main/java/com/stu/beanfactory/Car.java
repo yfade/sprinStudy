@@ -1,8 +1,12 @@
 package com.stu.beanfactory;
 
+import org.springframework.stereotype.Component;
+
 /**
  * Created by admin on 2018/10/28.
  */
+
+@Component
 public class Car {
     private String brand;
 
