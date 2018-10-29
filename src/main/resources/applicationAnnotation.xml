@@ -10,7 +10,7 @@
         resource-pattern:如果仅希望扫描包下的特定类，可续用resource-pattern过滤
         -->
     <!--可包含多个include或exclude，两者只能用其中一个。使用include时 需要use-default-filters="false"，默认是true-->
-    <context:component-scan base-package="com.stu" resource-pattern="annotation/*/*.class" use-default-filters="false">
+    <context:component-scan base-package="com.stu" resource-pattern="annotation/*/*.class">
         <!--不包含特定注解(这里指controller)，其他可以-->
         <!--<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>-->
         <!--只包含包含特定注解(这里指service)，其他不可以。当过滤为commponent则包含所有-->

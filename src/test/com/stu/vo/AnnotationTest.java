@@ -21,7 +21,7 @@ public class AnnotationTest {
         UserController userController= (UserController) act.getBean("userController");
         System.out.println(userController);
 
-        UserService userService= (UserService) act.getBean("userServiceImpl");
+        UserService userService= (UserService) act.getBean("userService");
         System.out.println(userService);
 
         UserDao userDao= (UserDao) act.getBean("userDao");
