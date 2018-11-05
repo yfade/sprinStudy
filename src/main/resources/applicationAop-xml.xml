@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--配置自动扫描的包-->
+    <context:component-scan base-package="com.stu.aop.xml"/>
+
+    <!--将切面放入容器-->
+    <bean id="loggingAspect" class="com.stu.aop.xml.service.LoggingAspect"/>
+
+    <bean id="validateAspect" class="com.stu.aop.xml.service.ValidateAspect"/>
+
+    <!--配置aop-->
+    <aop:config>
+        <!--配置切点表达式-->
+        <aop:pointcut id="pointCut" expression="execution(* com.stu.aop.xml.service.*.*(..))"/>
+
+        <!--配置切面通知-->
+        <aop:aspect ref="loggingAspect" order="2">
+            <aop:before method="beforeMethod" pointcut-ref="pointCut"/>
+            <aop:after method="afterMethod" pointcut-ref="pointCut"/>
+            <aop:after-returning method="afterReturnMethod" returning="result" pointcut-ref="pointCut"/>
+            <aop:after-throwing method="afterThrowException" throwing="ex" pointcut-ref="pointCut"/>
+            <!--<aop:around method="aroundMethod" pointcut-ref="pointCut"/>-->
+        </aop:aspect>
+
+        <aop:aspect ref="validateAspect" order="1">
+            <aop:before method="validateArgs" pointcut="execution(* com.stu.aop.xml.service.CalculateServiceImpl.*(..))"/>
+        </aop:aspect>
+    </aop:config>
+</beans>

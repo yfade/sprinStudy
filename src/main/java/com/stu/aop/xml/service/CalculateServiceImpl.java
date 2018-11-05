@@ -1,4 +1,4 @@
-package com.stu.aop.service;
+package com.stu.aop.xml.service;
 
 import org.springframework.stereotype.Service;
 

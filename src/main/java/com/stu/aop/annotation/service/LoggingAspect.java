@@ -1,4 +1,4 @@
-package com.stu.aop.service;
+package com.stu.aop.annotation.service;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -25,7 +25,7 @@ public class LoggingAspect {
      * 使用@PointCut声明切点表达式
      * 后面的其他通知通过使用方法名来调用公共切点表达式
      */
-    @Pointcut("execution(* com.stu.aop.*.*.*(..))")
+    @Pointcut("execution(* com.stu.aop.*.*.*.*(..))")
     public void declareExecution(){}
 
     //前置通知：在目标方法执行前执行
