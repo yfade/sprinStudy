@@ -5,7 +5,7 @@ package com.stu.xmltx.vo;
  */
 public class BookStock {
     private int id;
-    private int book_id;
+    private int bookId;
     private int num;
 
     public int getId() {
@@ -16,12 +16,12 @@ public class BookStock {
         this.id = id;
     }
 
-    public int getBook_id() {
-        return book_id;
+    public int getBookId() {
+        return bookId;
     }
 
-    public void setBook_id(int book_id) {
-        this.book_id = book_id;
+    public void setBookId(int bookId) {
+        this.bookId = bookId;
     }
 
     public int getNum() {

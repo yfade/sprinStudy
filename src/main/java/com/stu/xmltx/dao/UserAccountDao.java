@@ -1,5 +1,6 @@
 package com.stu.xmltx.dao;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -12,12 +13,8 @@ import java.math.BigDecimal;
  */
 @Repository
 public class UserAccountDao {
-    private JdbcTemplate jdbcTemplate=null;
-    private ApplicationContext applicationContext=null;
-    {
-        applicationContext=new ClassPathXmlApplicationContext("applicationTx.xml");
-        jdbcTemplate= (JdbcTemplate) applicationContext.getBean("jdbcTemplate");
-    }
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
 
     /**
      * 更新账户余额
@@ -29,7 +26,8 @@ public class UserAccountDao {
         BigDecimal balance=jdbcTemplate.queryForObject(selSql,BigDecimal.class,userId);
         if (-1==balance.compareTo(price))
             throw new RuntimeException("账户余额不足:"+userId);
-        String updSql="update user_account set balace=balance-? where user_id=?";
+        String updSql="update user_account set balance=balance-? where user_id=?";
         jdbcTemplate.update(updSql,price,userId);
+        System.out.println("更新账户余额:减"+price);
     }
 }

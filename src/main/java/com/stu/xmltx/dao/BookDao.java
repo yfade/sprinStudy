@@ -1,5 +1,8 @@
 package com.stu.xmltx.dao;
 
+import com.stu.jdbc.po.Depart;
+import com.stu.xmltx.vo.Book;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -12,12 +15,8 @@ import java.math.BigDecimal;
  */
 @Repository
 public class BookDao {
-    private JdbcTemplate jdbcTemplate=null;
-    private ApplicationContext applicationContext=null;
-    {
-        applicationContext=new ClassPathXmlApplicationContext("applicationTx.xml");
-        jdbcTemplate= (JdbcTemplate) applicationContext.getBean("jdbcTemplate");
-    }
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
 
     /**
      * 根据书号查询单价
@@ -34,11 +33,11 @@ public class BookDao {
      * @param id
      */
     public void updateSotck(int id){
-        String selSql="select num from book_stock where id=?";
+        String selSql="select num from book_stock where book_id=?";
         int num=jdbcTemplate.queryForObject(selSql,Integer.class,id);
-        if (num<1)
+        if (num<111)
             throw new RuntimeException("库存不足:"+id);
-        String updSql="update book_stock set num=num-1 where id=?";
+        String updSql="update book_stock set num=num-1 where book_id=?";
         jdbcTemplate.update(updSql,id);
         System.out.println("减库存完成:"+id);
     }
