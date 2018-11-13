@@ -35,7 +35,7 @@ public class BookDao {
     public void updateSotck(int id){
         String selSql="select num from book_stock where book_id=?";
         int num=jdbcTemplate.queryForObject(selSql,Integer.class,id);
-        if (num<111)
+        if (num<1)
             throw new RuntimeException("库存不足:"+id);
         String updSql="update book_stock set num=num-1 where book_id=?";
         jdbcTemplate.update(updSql,id);

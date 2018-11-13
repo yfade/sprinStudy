@@ -5,6 +5,7 @@ import com.stu.xmltx.dao.UserAccountDao;
 import com.stu.xmltx.service.BookShopService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
@@ -20,9 +21,9 @@ public class BookShopServiceImpl implements BookShopService {
     @Autowired
     private UserAccountDao userAccountDao;
 
-    @Transactional
+    @Transactional(propagation = Propagation.REQUIRED)
     @Override
-    public void buyBook() {
+    public void buyBook(String userId,Integer bookId) {
         BigDecimal price = bookDao.getPriceById(1);
         userAccountDao.updateAccount("tx001", price);
         bookDao.updateSotck(1);
